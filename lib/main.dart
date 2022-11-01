@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'core/feature/presentation/screens/home/home.dart';
-import 'core/feature/presentation/screens/login/login.dart';
-import 'feature/presentation/screens/other%20pages/other_pages.dart';
+import 'feature/presentation/routing/routing.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,12 +23,6 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  void _handlePassword(String password) {
-    setState(() {
-      _passwordController.text = password;
-    });
-  }
-
   bool isHomeScreen = true;
   setHomeScreen(screenvalue) {
     setState(() {
@@ -42,74 +34,10 @@ class _MyAppState extends State<MyApp> {
   int selectedPage = 0;
   @override
   Widget build(BuildContext context) {
-    dynamic _onSelectedPage() {
-      switch (selectedPage) {
-        case 0:
-          if (_logIn) {
-            return Home(
-              selectedPage: (value) {
-                setState(() {
-                  selectedPage = value;
-                });
-              },
-              email: _emailController.text,
-              password: _passwordController.text,
-              onTap: (value) {
-                _handleEmail;
-                selectedPage++;
-              },
-            );
-          }
-
-          return Login(
-            selectedPageNumber: (value) {},
-            isLogin: (boolValue) {
-              setState(() {
-                _logIn = boolValue;
-              });
-            },
-            onTapOne: _handleEmail,
-          );
-
-        case 1:
-          return Cart(
-            setHomeScreen: (setHomeScreen),
-          );
-
-        case 2:
-          return const Profile();
-
-        case 3:
-          return const CheckOut();
-
-        default:
-          break;
-      }
-    }
-
-    // final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-    return MaterialApp(
-      home: Navigator(
-       
-        pages: [
-          MaterialPage(
-            key: const ValueKey("login"),
-            child: _onSelectedPage(),
-          ),
-        ],
-        onPopPage: (route, result) {
-          _logIn = false;
-          selectedPage = 0;
-          bool popStatus = route.didPop(result);
-          if (popStatus == true) {
-            setHomeScreen(true);
-          }
-          return popStatus;
-        },
-      ),
+    return MaterialApp.router(
+      routerDelegate: AppRoute.router.routerDelegate,
+      routeInformationProvider: AppRoute.router.routeInformationProvider,
+      routeInformationParser: AppRoute.router.routeInformationParser,
     );
   }
 }
-
-
-//to check if new branch is working correctly or not
