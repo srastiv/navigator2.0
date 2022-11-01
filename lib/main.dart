@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:navigator_two_point_0/core/feature/presentation/screens/home/home.dart';
-import 'package:navigator_two_point_0/core/feature/presentation/screens/login/login.dart';
-import 'package:navigator_two_point_0/feature/presentation/screens/other%20pages/other_pages.dart';
+
+import 'core/feature/presentation/screens/home/home.dart';
+import 'core/feature/presentation/screens/login/login.dart';
+import 'feature/presentation/screens/other%20pages/other_pages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,14 +23,12 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _emailController.text = email;
     });
-    print(email);
   }
 
   void _handlePassword(String password) {
     setState(() {
       _passwordController.text = password;
     });
-    print(password);
   }
 
   bool isHomeScreen = true;
@@ -73,12 +72,9 @@ class _MyAppState extends State<MyApp> {
           );
 
         case 1:
-           if (isHomeScreen == true) {
           return Cart(
-            setHomeScreen: setHomeScreen,
+            setHomeScreen: (setHomeScreen),
           );
-         }
-         break;
 
         case 2:
           return const Profile();
@@ -94,6 +90,7 @@ class _MyAppState extends State<MyApp> {
     // final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
     return MaterialApp(
       home: Navigator(
+       
         pages: [
           MaterialPage(
             key: const ValueKey("login"),
@@ -113,3 +110,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+
+//to check if new branch is working correctly or not
