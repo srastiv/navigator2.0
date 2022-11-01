@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navigator_two_point_0/core/feature/presentation/screens/home/home.dart';
 import 'package:navigator_two_point_0/core/feature/presentation/screens/login/login.dart';
-import 'package:navigator_two_point_0/core/feature/presentation/screens/other%20pages/other_pages.dart';
+import 'package:navigator_two_point_0/feature/presentation/screens/other%20pages/other_pages.dart';
 
 void main() {
   runApp(const MyApp());
