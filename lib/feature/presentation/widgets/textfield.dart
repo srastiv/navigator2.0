@@ -4,23 +4,23 @@ class EnterDetailsTextField extends StatelessWidget {
   String text;
   double height;
   TextEditingController controller;
-  String? Function(String? validate)? validator;
+  final ValueChanged onChanged;
 
   EnterDetailsTextField({
     Key? key,
-    required this.validator,
     required this.text,
     required this.height,
     required this.controller,
+    required this.onChanged,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
       child: TextFormField(
+        onChanged: onChanged,
         keyboardType: TextInputType.multiline,
         controller: controller,
-        validator: validator,
         decoration: InputDecoration(
           isDense: true,
           border: InputBorder.none,
