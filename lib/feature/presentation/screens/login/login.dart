@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../constants/texts.dart';
+import '../../constants/textstyles.dart';
 import '../../widgets/textfield.dart';
 import 'bloc/login_bloc.dart';
 
@@ -17,7 +19,7 @@ class Login extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text("Login"),
+            title: kLogin,
           ),
           body: Form(
             autovalidateMode: AutovalidateMode.always,
@@ -27,7 +29,7 @@ class Login extends StatelessWidget {
                 children: <Widget>[
                   EnterDetailsTextField(
                     height: 50,
-                    text: "email",
+                    text: kEmail,
                     controller: emailController,
                     onChanged: (value) =>
                         BlocProvider.of<LoginBloc>(context).add(
@@ -39,17 +41,15 @@ class Login extends StatelessWidget {
                   BlocBuilder<LoginBloc, LoginState>(
                     builder: (context, state) {
                       if (state is LoginErrorState) {
-                        return Text(
-                          state.emailErrorMessage,
-                          style: TextStyle(color: Colors.red),
-                        );
+                        return Text(state.emailErrorMessage,
+                            style: kErrorTextStyle);
                       }
                       return const SizedBox();
                     },
                   ),
                   EnterDetailsTextField(
                     height: 50,
-                    text: "password",
+                    text: kPassword,
                     controller: passwordController,
                     onChanged: (value) =>
                         BlocProvider.of<LoginBloc>(context).add(
@@ -61,10 +61,8 @@ class Login extends StatelessWidget {
                   BlocBuilder<LoginBloc, LoginState>(
                     builder: (context, state) {
                       if (state is LoginErrorState) {
-                        return Text(
-                          state.passwordErrorMessage,
-                          style: TextStyle(color: Colors.red),
-                        );
+                        return Text(state.passwordErrorMessage,
+                            style: kErrorTextStyle);
                       }
                       return const SizedBox();
                     },
@@ -77,7 +75,7 @@ class Login extends StatelessWidget {
                                 ? null
                                 : context.go('/b');
                           },
-                          child: const Text("go to HOME"));
+                          child: kGoToHome);
                     },
                   ),
                 ],
